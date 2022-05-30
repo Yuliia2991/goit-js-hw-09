@@ -35,6 +35,7 @@ img {
   text-transform: uppercase;
   }
 
-button[data-start] {
+button[data-start],
+button[data-stop] {
   text-transform: uppercase;
 }

@@ -13,7 +13,7 @@ const refs = {
 
 let startTime = null;
 let timerId = null;
-refs.timerBtn.disabled = true;
+isTimerBtnDisabled(true);
 
 const options = {
   enableTime: true,
@@ -26,16 +26,16 @@ const options = {
 
     if (startTime < defaultTime) {
       Notify.failure('Please choose a date in the future');
-      refs.timerBtn.disabled = true;
+      isTimerBtnDisabled(true);
       return;
     } else {
-      refs.timerBtn.disabled = false;
+      isTimerBtnDisabled(false);
     }
   },
 };
 
 function timer() {
-  refs.timerBtn.disabled = true;
+  isTimerBtnDisabled(true);
   timerId = setInterval(() => {
     const currentTime = Date.now();
     const deltaTime = startTime - currentTime;
@@ -45,7 +45,6 @@ function timer() {
       clearInterval(timerId);
     } else {
       setTimerInterface(days, hours, minutes, seconds);
-      // console.log(`${days}:${hours}:${minutes}:${seconds}`);
     }
   }, 1000);
 }
@@ -86,6 +85,9 @@ function setTimerInterface(days, hours, minutes, seconds) {
   refs.hours.textContent = `${hours}`;
   refs.minutes.textContent = `${minutes}`;
   refs.seconds.textContent = `${seconds}`;
+}
+function isTimerBtnDisabled(boolean) {
+  refs.timerBtn.disabled = boolean;
 }
 
 flatpickr('input#datetime-picker', options);

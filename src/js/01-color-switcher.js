@@ -10,16 +10,22 @@ refs.btnStop.addEventListener('click', onBtnStop);
 
 function onBtnStart() {
   intervalId = setInterval(changeBgColor, 1000);
-  refs.btnStart.disabled = true;
-  refs.btnStop.disabled = false;
+  isBtnStartDisabled(true);
+  isBtnStopDisabled(false);
 }
 
 function onBtnStop() {
   clearInterval(intervalId);
-  refs.btnStart.disabled = false;
-  refs.btnStop.disabled = true;
+  isBtnStartDisabled(false);
+  isBtnStopDisabled(true);
 }
 
+function isBtnStartDisabled(boolean) {
+  refs.btnStart.disabled = boolean;
+}
+function isBtnStopDisabled(boolean) {
+  refs.btnStop.disabled = boolean;
+}
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
